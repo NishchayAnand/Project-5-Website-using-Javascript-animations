@@ -1,0 +1,554 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/* Variables */
+:root {
+  --header-height: 3rem;
+  --font-semi: 600;
+  --body-font: "Poppins", sans-serif;
+  --big-font-size: 2rem;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: 0.938rem;
+
+  /* Colors */
+  --first-color: #4070f4;
+  --second-color: #0e2431;
+
+  /* Margins */
+  --mb-1: 0.5rem;
+  --mb-2: 1rem;
+  --mb-3: 1.5rem;
+  --mb-4: 2rem;
+  --mb-5: 2.5rem;
+  --mb-6: 3rem;
+
+  /* z-indexes */
+  --z-back: -10;
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/* properties of grid are specified using mobile first approach */
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  color: var(--second-color);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* for medium screens and above */
+@media screen and (min-width: 768px) {
+  :root {
+    --big-font-size: 3.5rem;
+    --h2-font-size: 2rem;
+    --normal-font-size: 1rem;
+  }
+
+  body {
+    margin: 0;
+  }
+}
+
+/* Navigation Bar */
+
+.navigation-bar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(146, 146, 146, 0.15);
+}
+
+.navbar {
+  max-width: 1024px;
+  width: calc(100% - 2rem);
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Margins are provided for medium and below screens keeping up with mobile first methodology */
+  margin-left: var(--mb-2);
+  margin-right: var(--mb-2);
+  font-weight: var(--font-semi);
+}
+
+.nav-logo {
+  color: var(--second-color);
+}
+
+.nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-item {
+  margin-bottom: var(--mb-4);
+}
+
+.nav-link {
+  position: relative;
+  /* white color for medium screens and below */
+  color: #fff;
+}
+
+/* .nav-link:hover {
+  position: relative;
+} */
+
+.nav-link:hover::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0.18rem;
+  left: 0;
+  top: 2rem;
+  background-color: var(--first-color);
+}
+
+/* Active navigation link */
+.nav-link.active::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0.18rem;
+  left: 0;
+  top: 2rem;
+  background-color: var(--first-color);
+}
+
+.nav-toggler {
+  color: var(--second-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* class to display the navigation menu when you click on the hamburger button */
+.navigation-links-appear {
+  right: 0;
+}
+
+/* Media Query for Navigation bar */
+
+/* (1) for medium size screens and below */
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    /* so that it remains fixed even if we scroll in the background */
+    position: fixed;
+    top: var(--header-height);
+    /* to remove it from the screen */
+    right: -100%;
+    width: 80%;
+    /* since position: fixed and we haven't specified position: relative for the parent element, 
+    it will make the height equal to the the root element i.e <html> element
+    hence equal to the viewport's height */
+    height: 100%;
+    padding: 2rem;
+    background-color: var(--second-color);
+    transition: 0.5s;
+  }
+}
+
+/* (2) for medium size screens and above */
+@media screen and (min-width: 768px) {
+  .navbar {
+    height: calc(var(--header-height) + 1rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nav-list {
+    display: flex;
+    padding-top: 0;
+  }
+  .nav-item {
+    margin-left: var(--mb-6);
+    margin-bottom: 0;
+  }
+  .nav-toggler {
+    display: none;
+  }
+  .nav-link {
+    color: var(--second-color);
+  }
+}
+
+/* Navigation bar ends */
+
+.grid-container {
+  max-width: 1024px;
+  display: grid;
+  width: calc(100% - 2rem);
+  margin-left: var(--mb-2);
+  margin-right: var(--mb-2);
+}
+
+@media screen and (min-width: 1024px) {
+  .grid-container {
+    grid-column-gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Home Section */
+
+.home {
+  height: calc(100vh-3rem);
+  row-gap: 1rem;
+}
+
+.home-content {
+  align-self: center;
+}
+
+.home-title {
+  font-size: var(--big-font-size);
+  margin-bottom: var(--mb-5);
+}
+
+.home-title-color {
+  color: var(--first-color);
+}
+
+.home-social {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-social-icon {
+  width: max-content;
+  margin-bottom: var(--mb-2);
+  font-size: 1.5rem;
+  color: var(--second-color);
+}
+.home-social-icon:hover {
+  color: var(--first-color);
+}
+
+.home-img {
+  /* relative to the root element i.e. <html> element */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 295px;
+}
+
+.home-button {
+  /* no need of display: inline-block here */
+  display: inline-block;
+  background-color: var(--first-color);
+  color: #fff;
+  padding: 0.75rem 2.5rem;
+  font-weight: var(--font-semi);
+  border-radius: 0.5rem;
+}
+
+.home-button:hover {
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.15);
+}
+
+/* for medium screens and above */
+@media screen and (min-width: 768px) {
+  .home {
+    height: 100vh;
+  }
+
+  .home-content {
+    align-self: flex-end;
+  }
+
+  .home-social {
+    padding-top: 0;
+    padding-bottom: 2.5rem;
+    flex-direction: row;
+    align-self: flex-end;
+  }
+
+  .home-social-icon {
+    margin-bottom: 0;
+    margin-right: var(--mb-4);
+  }
+
+  .home-img {
+    width: 457px;
+    bottom: 15%;
+  }
+}
+
+/* between medium - large screens */
+@media screen and (min-width: 1024px) {
+  .home-img {
+    right: 10%;
+  }
+}
+
+/* Home Section ends */
+
+.section {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.section-title {
+  position: relative;
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-top: var(--mb-2);
+  margin-bottom: var(--mb-4);
+  text-align: center;
+}
+.section-title::after {
+  position: absolute;
+  content: "";
+  width: 64px;
+  height: 0.18rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 2rem;
+  background-color: var(--first-color);
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+  .section-title {
+    margin-bottom: var(--mb-6);
+  }
+  .section-title::after {
+    width: 80px;
+    top: 3rem;
+  }
+}
+
+/* Skill Section */
+
+.about-container {
+  row-gap: 2rem;
+  text-align: center;
+}
+.about-subtitle {
+  margin-bottom: var(--mb-2);
+}
+.about-img {
+  justify-self: center;
+}
+.about-img img {
+  width: 200px;
+  border-radius: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .about-container {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    text-align: initial;
+  }
+  .about-img img {
+    width: 300px;
+  }
+  .about-title {
+    margin-bottom: var(--mb-6);
+  }
+  .about-title::after {
+    width: 80px;
+    top: 3rem;
+  }
+}
+
+/* Skill Section */
+
+.skills-container {
+  row-gap: 2rem;
+  text-align: center;
+}
+
+.skills-subtitle {
+  margin-bottom: var(--mb-2);
+}
+
+.skills-text {
+  margin-bottom: var(--mb-4);
+}
+
+.skills-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  font-weight: var(--font-semi);
+  padding: 0.5rem 1rem;
+  margin-bottom: var(--mb-4);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 25px rgba(14, 36, 49, 0.15);
+}
+
+.skills-icon {
+  font-size: 2rem;
+  margin-right: var(--mb-2);
+  color: var(--first-color);
+}
+.skills-names {
+  display: flex;
+  align-items: center;
+}
+.skills-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--first-color);
+  height: 0.25rem;
+  border-radius: 0.5rem;
+  z-index: var(--z-back);
+}
+.skills-html {
+  width: 95%;
+}
+.skills-css {
+  width: 85%;
+}
+.skills-js {
+  width: 65%;
+}
+.skills-ux {
+  width: 85%;
+}
+.skills-img {
+  border-radius: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    text-align: initial;
+  }
+}
+
+/* Section Work */
+
+.work-container {
+  row-gap: 2rem;
+}
+
+.work-img {
+  box-shadow: 0 4px 25px rgba(14, 36, 49, 0.15);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.work-img img {
+  width: 100%;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.work-img img:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (min-width: 768px) {
+  .work-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 2rem;
+  }
+}
+
+/* Contact Section */
+
+.contact-input {
+  /* width: 100% - for medium and below screens, the contact-form occupies the full width of the viewport */
+  width: 100%;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1.5px solid var(--second-color);
+  /* outline: none; */
+  margin-bottom: var(--mb-4);
+}
+
+.contact-button {
+  float: right;
+  padding: 0.75rem 2.5rem;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  background-color: var(--first-color);
+  color: #fff;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi);
+  cursor: pointer;
+}
+
+.contact-button:hover {
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (min-width: 768px) {
+  .contact-container {
+    justify-items: center;
+  }
+  .contact-form {
+    width: 360px;
+  }
+}
+
+/* Footer */
+
+footer {
+  background-color: var(--second-color);
+  color: #fff;
+  text-align: center;
+  font-weight: var(--font-semi);
+  padding: 2rem 0;
+  margin: 0;
+}
+
+.footer-title {
+  font-size: 2rem;
+  margin-bottom: var(--mb-4);
+}
+
+.footer-social {
+  margin-bottom: var(--mb-4);
+}
+
+.footer-icon {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0 var(--mb-2);
+}
